@@ -8,6 +8,7 @@ class RankAgent(object):
         self.cards = cards
         self._card_rank_count = dict()
         self._card_suit_count = dict()
+        self._card_values = list()
         self._count_cards()
 
     def get_card_rank(self):
@@ -28,7 +29,12 @@ class RankAgent(object):
 
         return card_rank
 
-    def is_high(self):
+    def _is_high(self):
+        highest_card = max(self._card_values)
+
+        if highest_card >= 13:
+            return True
+
         return False
 
     def _is_pair(self):
@@ -57,6 +63,19 @@ class RankAgent(object):
             suit = card['suit']
             self._card_rank_count[rank] = self._card_rank_count.get(rank, 0) + 1
             self._card_suit_count[suit] = self._card_suit_count.get(suit, 0) + 1
+            self._card_values.append(self._value_from_rank(rank))
+
+    def _value_from_rank(self, rank):
+        rank = str(rank)
+        if rank.isdigit():
+            return int(rank)
+        else:
+            helper = {"J": 11,
+                      "Q": 12,
+                      "K": 13,
+                      "A": 14}
+            return helper[rank]
+
 
 
 

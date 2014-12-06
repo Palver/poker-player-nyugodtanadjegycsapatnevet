@@ -16,3 +16,6 @@ def get_all_cards(game_state):
 
 def player_count(game_state):
     return len(game_state["players"])
+
+def is_preflop(game_state):
+    return len(game_state["community_cards"]) == 0
