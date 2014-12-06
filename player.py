@@ -1,5 +1,5 @@
 
-from helpers import get_hole_card_ranks, have_high_cards
+from helpers import *
 
 
 class Player:
