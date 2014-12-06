@@ -12,7 +12,7 @@ class Player:
 
         ra = RankAgent(all_cards)
         rank = ra.get_card_rank()
-        offer = 50 * rank
+        offer = 0
 
         if is_preflop(game_state):
             if ra._is_high():
@@ -23,6 +23,10 @@ class Player:
             # a tobb jatekos van, es gyenge a lapunk => FOLD
             if rank in [1, 2] and player_count(game_state) > 2:
                 offer = 0
+            else:
+                offer = max(50 * rank, int(game_state["minimum_raise"]))
+
+
 
         return offer
 
