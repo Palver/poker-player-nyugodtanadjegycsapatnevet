@@ -29,10 +29,10 @@ class RankAgent(object):
 
         return card_rank
 
-    def _is_high(self):
+    def _is_high(self, min_value=13):
         highest_card = max(self._card_values)
 
-        if highest_card >= 13:
+        if highest_card >= min_value:
             return True
 
         return False
