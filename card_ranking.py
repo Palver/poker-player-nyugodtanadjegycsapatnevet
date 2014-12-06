@@ -35,13 +35,9 @@ class RankAgent(object):
 
         return card_rank
 
-    def _is_high(self, min_value=13):
-        highest_card = max(self._card_values)
-
-        if highest_card >= min_value:
-            return True
-
-        return False
+    def _is_high(self, min_value=11):
+        highest_card = self.__average(self._card_values) >= min_value
+        return highest_card
 
     def _is_pair(self):
         return 2 in self._card_rank_count.values()
