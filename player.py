@@ -15,22 +15,18 @@ class Player:
         rank = ra.get_card_rank()
         offer = 0
 
-        if is_preflop(game_state):
-            if ra._is_high() and is_well_positioned(game_state):
-                offer = game_state["minimum_raise"]
-            elif ra._is_pair() and ra._is_high(8):
-                offer = 1000
+        if player_count(game_state) > 2 and rank < 4:
+            offer = 0
         else:
-            # a tobb jatekos van, es gyenge a lapunk => FOLD
-            if rank in [1, 2] and player_count(game_state) > 2:
-                offer = 0
+            if is_preflop(game_state):
+                if ra._is_high() and is_well_positioned(game_state):
+                    offer = game_state["minimum_raise"]
+                elif ra._is_pair() and ra._is_high(8):
+                    offer = 1000
+            elif rank >= 5:
+                offer = int(myself["stack"])
             else:
-                if rank >= 5:
-                    offer = int(myself["stack"])
-                else:
-                    offer = max(50 * rank, int(game_state["minimum_raise"]))
-
-
+                offer = int(game_state["minimum_raise"]) * rank * 1.1
 
         return offer
 
