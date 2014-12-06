@@ -1,6 +1,6 @@
 
 from unittest import TestCase
-from player import get_hole_card_ranks
+from helpers import get_hole_card_ranks
 
 
 class HoleCardsTestCase(TestCase):
