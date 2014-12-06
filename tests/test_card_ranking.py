@@ -35,16 +35,18 @@ class RankingAgentTestCase(TestCase):
         self.mock_2_cards_no_pair = [{'rank': 'A', 'suit': 'spades'}, {'rank': 'K', 'suit': 'spades'}]
         self.mock_3_cards_no_pair = [{'rank': 'A', 'suit': 'spades'}, {'rank': 'K', 'suit': 'spades'}, {'rank': 'Q', 'suit': 'spades'}]
         self.mock_3_cards_drill = [{'rank': 'A', 'suit': 'spades'}, {'rank': 'A', 'suit': 'hearts'}, {'rank': 'A', 'suit': 'spades'}]
+        self.mock_3_cards_no_drill = [{'rank': 'A', 'suit': 'spades'}, {'rank': 'A', 'suit': 'hearts'}, {'rank': 'Q', 'suit': 'spades'}]
 
     def test_is_drill_is_false(self):
-        self.ranking_agent = RankAgent(self.mock_2_cards_no_pair)
-        assert not self.ranking_agent._is_drill()
-
-        self.ranking_agent = RankAgent(self.mock_3_cards_no_pair)
-        assert not self.ranking_agent._is_drill()
+        assert not RankAgent(self.mock_2_cards_no_pair)._is_drill()
+        assert not RankAgent(self.mock_3_cards_no_pair)._is_drill()
+        assert not RankAgent(self.mock_3_cards_no_drill)._is_drill()
 
     def test_is_drill_is_true(self):
-        self.ranking_agent = RankAgent(self.mock_3_cards_drill)
-        assert self.ranking_agent._is_drill()
+        assert RankAgent(self.mock_3_cards_drill)._is_drill()
 
+    def test_is_pair_is_false(self):
+        assert not RankAgent(self.mock_2_cards_no_pair)._is_pair()
+        assert not RankAgent(self.mock_3_cards_no_pair)._is_pair()
+        assert not RankAgent(self.mock_3_cards_drill)._is_pair()
 
