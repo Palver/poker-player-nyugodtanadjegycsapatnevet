@@ -16,7 +16,7 @@ class Player:
         rank = ra.get_card_rank()
         offer = 0
 
-        if player_count(game_state) > 2 and rank < 4:
+        if player_count(game_state) > 2:
             offer = 0
         else:
             minimal_amount = int(game_state["minimum_raise"])
