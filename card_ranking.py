@@ -11,25 +11,28 @@ class RankAgent(object):
         self._count_cards()
 
     def get_card_rank(self):
-        card_rank = -1
+        card_rank = 0
 
-        if self.is_high():
-            card_rank = 0
-        if self.is_pair():
+        if self._is_pair():
             card_rank = 1
+        if self._is_two_pairs():
+            card_rank = 2
+        if self._is_drill():
+            card_rank = 3
 
+        card_rank += 1
         return card_rank
 
     def is_high(self):
         return False
 
-    def is_pair(self):
+    def _is_pair(self):
         return 2 in self._card_count.values()
 
-    def is_drill(self):
+    def _is_drill(self):
         return 3 in self._card_count.values()
 
-    def is_two_pair(self):
+    def _is_two_pairs(self):
         count_list = list(self._card_count.values())
         number_of_pairs = count_list.count(2)
         return 2 == number_of_pairs

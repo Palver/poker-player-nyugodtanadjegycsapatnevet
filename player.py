@@ -1,5 +1,6 @@
 
 from helpers import *
+from card_ranking import RankAgent
 
 
 class Player:
@@ -8,13 +9,12 @@ class Player:
     def betRequest(self, game_state):
         offer = 100
         my_cards = get_hole_card_ranks(game_state)
+        all_cards = get_all_cards(game_state)
 
-        if have_high_cards(my_cards):
-            offer = 1000
-        card_values = {"A": 100,
-                       "K": 50,
-                       "Q": 40}
+        ra = RankAgent(all_cards)
+        rank = ra.get_card_rank()
 
+        offer = rank * 100
 
         return offer
 

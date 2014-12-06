@@ -38,13 +38,13 @@ class RankingAgentTestCase(TestCase):
 
     def test_is_drill_is_false(self):
         self.ranking_agent = RankAgent(self.mock_2_cards_no_pair)
-        assert not self.ranking_agent.is_drill()
+        assert not self.ranking_agent._is_drill()
 
         self.ranking_agent = RankAgent(self.mock_3_cards_no_pair)
-        assert not self.ranking_agent.is_drill()
+        assert not self.ranking_agent._is_drill()
 
     def test_is_drill_is_true(self):
         self.ranking_agent = RankAgent(self.mock_3_cards_drill)
-        assert self.ranking_agent.is_drill()
+        assert self.ranking_agent._is_drill()
 
 
