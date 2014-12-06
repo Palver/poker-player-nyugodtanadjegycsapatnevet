@@ -14,7 +14,8 @@ class Player:
         rank = ra.get_card_rank()
         offer = 50 * rank
 
-        if rank in [1, 2] and player_count(game_state) > 2:
+        # a tobb jatekos van, es gyenge a lapunk => FOLD
+        if rank in [0, 1, 2] and player_count(game_state) > 2:
             offer = 0
 
         return offer
