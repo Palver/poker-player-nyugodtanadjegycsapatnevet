@@ -27,7 +27,7 @@ class RankAgent(object):
         return 2 in self._card_count.values()
 
     def is_drill(self):
-        return False
+        return 3 in self._card_count.values()
 
     def is_two_pair(self):
         count_list = list(self._card_count.values())
