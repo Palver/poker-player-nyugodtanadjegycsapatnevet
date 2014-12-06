@@ -13,3 +13,6 @@ def get_all_cards(game_state):
     all_cards = game_state['players'][player_id]['hole_cards']
     all_cards += game_state['community_cards']
     return all_cards
+
+def player_count(game_state):
+    return len(game_state["players"])
