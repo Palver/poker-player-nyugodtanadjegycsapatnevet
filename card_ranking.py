@@ -24,6 +24,8 @@ class RankAgent(object):
             card_rank = 4
         if self._is_full_house():
             card_rank = 5
+        if self._is_poker():
+            card_rank = 10
 
         card_rank += 1
         return card_rank
@@ -47,6 +49,9 @@ class RankAgent(object):
 
     def _is_full_house(self):
         return self._is_pair() and self._is_drill()
+
+    def _is_poker(self):
+        return 4 in self._card_rank_count.values()
 
     def _count_cards(self):
         for card in self.cards:
