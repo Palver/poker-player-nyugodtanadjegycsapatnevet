@@ -13,7 +13,6 @@ class RankAgent(object):
     def get_card_rank(self):
         card_rank = 0
 
-
         if self._is_pair():
             card_rank = 1
         if self._is_two_pairs():
@@ -27,7 +26,6 @@ class RankAgent(object):
         if self._is_poker():
             card_rank = 10
 
-        card_rank += 1
         return card_rank
 
     def is_high(self):
