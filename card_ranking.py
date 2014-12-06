@@ -6,6 +6,7 @@ class RankAgent(object):
 
     def __init__(self, cards):
         self._rank2value = {"J": 11, "Q": 12, "K": 13, "A": 14}
+        self._value2rank = {"11": "J", "12": "Q", "13": "K", "14": "A"}
 
         self.cards = cards
         self._card_rank_count = dict()
@@ -72,6 +73,7 @@ class RankAgent(object):
                 return True
         return False
 
+
     def _is_straight(self):
         unique_card_ranks = sorted(self._card_values)
         #unique_card_ranks = sorted(self.cards, key=lambda x: str(x["rank"]))
@@ -87,17 +89,6 @@ class RankAgent(object):
         return series_5 or series_6 or series_7
 
 
-
-        # for i in range(len(unique_card_ranks) - 5):
-        #     return self.
-        # if len(unique_card_ranks) == 6:
-        #     return self.__is_series(unique_card_ranks[1:])
-        # else:
-        #     return self.__is_series(unique_card_ranks[2:])
-
-
-
-
     def __average(self, values):
         return float(sum(values) / len(values))
 
@@ -110,23 +101,10 @@ class RankAgent(object):
             self._card_suit_count[suit] = self._card_suit_count.get(suit, 0) + 1
             self._card_values.append(self._value_from_rank(rank))
 
+
     def _value_from_rank(self, rank):
         rank = str(rank)
         if rank.isdigit():
             return int(rank)
         else:
             return self._rank2value[rank]
-
-    def _rank_from_value(self, value):
-        value = int(value)
-        if value <= 10:
-            return value
-        else:
-            return self._value2rank[value]
-
-
-
-
-
-
-
