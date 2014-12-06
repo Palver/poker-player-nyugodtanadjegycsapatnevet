@@ -13,9 +13,3 @@ def get_all_cards(game_state):
     all_cards = game_state['players'][player_id]['hole_cards']
     all_cards.update(game_state['community_cards'])
     return all_cards
-
-
-
-
-
-
