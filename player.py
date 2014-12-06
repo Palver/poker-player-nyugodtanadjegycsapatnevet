@@ -18,7 +18,7 @@ class Player:
 
 
         player_count = get_player_count(game_state)
-        print "{0}:{1}".format(get_player_count, rank)
+        print "{0}:{1}".format(player_count, rank)
 
         if player_count > 2:
             offer = 0
