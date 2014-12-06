@@ -23,12 +23,18 @@ class Player:
             if is_preflop(game_state):
                 if ra._is_high() and is_well_positioned(game_state):
                     offer = minimal_amount
-                elif ra._is_pair() and ra._is_high(8):
+
+                if ra._is_pair() and ra._is_high(8):
                     offer = max(current_cash * 0.25, minimal_amount)
-            elif rank >= 5:
-                offer = current_cash
+                if rank >= 5:
+                    offer = max(current_cash * 0.5, minimal_amount)
             else:
-                offer = minimal_amount * (1 + rank * 0.1)
+                if rank == 0:
+                    pass
+                elif rank > 0 and rank < 5:
+                    offer = max(minimal_amount, current_cash * 0.1)
+                else:
+                    offer = current_cash
 
         return offer
 
