@@ -14,7 +14,7 @@ class Player:
         ra = RankAgent(all_cards)
         rank = ra.get_card_rank()
 
-        offer = rank * 100
+        offer = rank * 50
 
         return offer
 
