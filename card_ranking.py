@@ -7,8 +7,8 @@ class RankAgent(object):
 
     def __init__(self, cards):
         self.cards = cards
-        self._count_cards()
         self._card_count = dict()
+        self._count_cards()
 
     def get_card_rank(self):
         card_rank = -1
@@ -24,6 +24,7 @@ class RankAgent(object):
         return False
 
     def is_pair(self):
+
         return False
 
     def is_drill(self):
