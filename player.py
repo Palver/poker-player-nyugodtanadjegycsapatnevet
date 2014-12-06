@@ -25,9 +25,9 @@ class Player:
                     offer = minimal_amount
 
                 if ra._is_pair() and ra._is_high(8):
-                    offer = max(current_cash * 0.25, minimal_amount)
+                    offer = max(current_cash * 0.25, minimal_amount + 10)
                 if rank >= 5:
-                    offer = max(current_cash * 0.5, minimal_amount)
+                    offer = max(current_cash * 0.5, minimal_amount + 50)
             else:
                 if rank == 0:
                     pass
