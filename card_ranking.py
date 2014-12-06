@@ -5,8 +5,7 @@ from collections import defaultdict
 class RankAgent(object):
 
     def __init__(self, cards):
-        self._rank2value = {"J": "11", "Q": "12", "K": "13", "A": "14"}
-        self._value2rank = {"11": "J", "12": "Q", "13": "K", "14": "A"}
+        self._rank2value = {"J": 11, "Q": 12, "K": 13, "A": 14}
 
         self.cards = cards
         self._card_rank_count = dict()
@@ -24,10 +23,12 @@ class RankAgent(object):
             card_rank = 2
         if self._is_drill():
             card_rank = 3
-        if self._is_flush():
+        if self._is_straight():
             card_rank = 4
-        if self._is_full_house():
+        if self._is_flush():
             card_rank = 5
+        if self._is_full_house():
+            card_rank = 10
         if self._is_poker():
             card_rank = 10
 
@@ -61,10 +62,7 @@ class RankAgent(object):
     def _is_poker(self):
         return 4 in self._card_rank_count.values()
 
-    def _is_straight(self):
-        unique_card_ranks = sorted(self._card_rank_count.keys(), key=lambda x: str(x))
-        #unique_card_ranks = sorted(self.cards, key=lambda x: str(x["rank"]))
-
+    def _is_series(self, unique_card_ranks):
         if len(unique_card_ranks) < 5:
             return False
 
@@ -72,9 +70,32 @@ class RankAgent(object):
             first, second, third = unique_card_ranks[:3]
             if first + 1 == second and second + 1 == third:
                 return True
-
-
         return False
+
+    def _is_straight(self):
+        unique_card_ranks = sorted(self._card_values)
+        #unique_card_ranks = sorted(self.cards, key=lambda x: str(x["rank"]))
+
+
+        series_5 = self._is_series(unique_card_ranks[0:5])
+        if len(unique_card_ranks) == 5:
+            return series_5
+        series_6 = self._is_series(unique_card_ranks[1:6])
+        if len(unique_card_ranks) == 6:
+            return series_5 or series_6
+        series_7 = self._is_series(unique_card_ranks[2:7])
+        return series_5 or series_6 or series_7
+
+
+
+        # for i in range(len(unique_card_ranks) - 5):
+        #     return self.
+        # if len(unique_card_ranks) == 6:
+        #     return self.__is_series(unique_card_ranks[1:])
+        # else:
+        #     return self.__is_series(unique_card_ranks[2:])
+
+
 
 
     def __average(self, values):
