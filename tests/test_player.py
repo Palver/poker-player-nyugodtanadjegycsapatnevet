@@ -20,7 +20,7 @@ class TestPlayer(TestCase):
                         }
                     ]
                 }
-            ]
+            ],
             'community_cards': []
         }
 
