@@ -76,8 +76,6 @@ class RankAgent(object):
 
     def _is_straight(self):
         unique_card_ranks = sorted(self._card_values)
-        #unique_card_ranks = sorted(self.cards, key=lambda x: str(x["rank"]))
-
 
         series_5 = self._is_series(unique_card_ranks[0:5])
         if len(unique_card_ranks) == 5:

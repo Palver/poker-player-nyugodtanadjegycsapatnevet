@@ -15,8 +15,8 @@ class Player:
         rank = ra.get_card_rank()
         offer = 0
 
-        if is_preflop(game_state) and is_well_positioned(game_state):
-            if ra._is_high():
+        if is_preflop(game_state):
+            if ra._is_high() and is_well_positioned(game_state):
                 offer = game_state["minimum_raise"]
             elif ra._is_pair() and ra._is_high(8):
                 offer = 1000
