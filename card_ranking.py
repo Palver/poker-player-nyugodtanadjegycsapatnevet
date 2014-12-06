@@ -5,13 +5,14 @@ from collections import defaultdict
 class RankAgent(object):
 
     def __init__(self, cards):
+        self._rank2value = {"J": "11", "Q": "12", "K": "13", "A": "14"}
+        self._value2rank = {"11": "J", "12": "Q", "13": "K", "14": "A"}
+
         self.cards = cards
         self._card_rank_count = dict()
         self._card_suit_count = dict()
         self._card_values = list()
         self._count_cards()
-        self._rank2value = {"J": 11, "Q": 12, "K": 13, "A": 14}
-        self._value2rank = {11: "J", 12: "Q", 13: "K", 14: "A"}
 
 
     def get_card_rank(self):
@@ -61,7 +62,9 @@ class RankAgent(object):
         return 4 in self._card_rank_count.values()
 
     def _is_straight(self):
-        unique_card_ranks = sorted(self._card_rank_count.keys())
+        unique_card_ranks = sorted(self._card_rank_count.keys(), key=lambda x: str(x))
+        #unique_card_ranks = sorted(self.cards, key=lambda x: str(x["rank"]))
+
         if len(unique_card_ranks) < 5:
             return False
 
@@ -94,10 +97,12 @@ class RankAgent(object):
             return self._rank2value[rank]
 
     def _rank_from_value(self, value):
+        value = int(value)
         if value <= 10:
             return value
         else:
             return self._value2rank[value]
+
 
 
 
