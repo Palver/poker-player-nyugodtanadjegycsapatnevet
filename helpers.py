@@ -11,5 +11,5 @@ def get_hole_card_ranks(game_state):
 def get_all_cards(game_state):
     player_id = game_state['in_action']
     all_cards = game_state['players'][player_id]['hole_cards']
-    all_cards.update(game_state['community_cards'])
+    all_cards += game_state['community_cards']
     return all_cards
