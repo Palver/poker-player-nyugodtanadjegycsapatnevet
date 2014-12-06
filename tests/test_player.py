@@ -21,6 +21,7 @@ class TestPlayer(TestCase):
                     ]
                 }
             ]
+            'community_cards': []
         }
 
     def test_player_returns_int(self):
