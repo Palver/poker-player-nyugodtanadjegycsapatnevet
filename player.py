@@ -9,6 +9,7 @@ class Player:
     def betRequest(self, game_state):
         my_cards = get_hole_card_ranks(game_state)
         all_cards = get_all_cards(game_state)
+        myself = get_myself(game_state)
 
         ra = RankAgent(all_cards)
         rank = ra.get_card_rank()
@@ -24,7 +25,10 @@ class Player:
             if rank in [1, 2] and player_count(game_state) > 2:
                 offer = 0
             else:
-                offer = max(50 * rank, int(game_state["minimum_raise"]))
+                if rank >= 5:
+                    offer = int(myself["stack"])
+                else:
+                    offer = max(50 * rank, int(game_state["minimum_raise"]))
 
 
 
