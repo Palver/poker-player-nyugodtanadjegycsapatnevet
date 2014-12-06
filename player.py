@@ -36,7 +36,7 @@ class Player:
                 else:
                     offer = current_cash
 
-        return offer
+        return int(offer)
 
     def showdown(self, game_state):
         pass
