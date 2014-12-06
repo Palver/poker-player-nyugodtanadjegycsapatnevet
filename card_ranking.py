@@ -10,6 +10,9 @@ class RankAgent(object):
         self._card_suit_count = dict()
         self._card_values = list()
         self._count_cards()
+        self._rank2value = {"J": 11, "Q": 12, "K": 13, "A": 14}
+        self._value2rank = {11: "J", 12: "Q", 13: "K", 14: "A"}
+
 
     def get_card_rank(self):
         card_rank = 0
@@ -57,6 +60,24 @@ class RankAgent(object):
     def _is_poker(self):
         return 4 in self._card_rank_count.values()
 
+    def _is_straight(self):
+        unique_card_ranks = sorted(self._card_rank_count.keys())
+        if len(unique_card_ranks) < 5:
+            return False
+
+        if float(unique_card_ranks[2]) == self.__average(unique_card_ranks):
+            first, second, third = unique_card_ranks[:3]
+            if first + 1 == second and second + 1 == third:
+                return True
+
+
+        return False
+
+
+    def __average(self, values):
+        return float(sum(values) / len(values))
+
+
     def _count_cards(self):
         for card in self.cards:
             rank = card['rank']
@@ -70,11 +91,15 @@ class RankAgent(object):
         if rank.isdigit():
             return int(rank)
         else:
-            helper = {"J": 11,
-                      "Q": 12,
-                      "K": 13,
-                      "A": 14}
-            return helper[rank]
+            return self._rank2value[rank]
+
+    def _rank_from_value(self, value):
+        if value <= 10:
+            return value
+        else:
+            return self._value2rank[value]
+
+
 
 
 
