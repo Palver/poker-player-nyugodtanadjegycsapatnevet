@@ -28,7 +28,7 @@ class RankAgent(object):
         return False
 
     def is_drill(self):
-        return False
+        return 3 in self._card_count.values()
 
     def _count_cards(self):
         for card in self.cards:
