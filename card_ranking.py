@@ -20,8 +20,10 @@ class RankAgent(object):
             card_rank = 2
         if self._is_drill():
             card_rank = 3
-        if self.__is_flush():
+        if self._is_flush():
             card_rank = 4
+        if self._is_full_house():
+            card_rank = 5
 
         card_rank += 1
         return card_rank
@@ -43,7 +45,8 @@ class RankAgent(object):
     def _is_flush(self):
         return max(self._card_suit_count.values()) >= 5
 
-
+    def _is_full_house(self):
+        return self._is_pair() and self._is_drill()
 
     def _count_cards(self):
         for card in self.cards:
