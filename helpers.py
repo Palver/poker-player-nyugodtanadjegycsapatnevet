@@ -27,3 +27,13 @@ def is_preflop(game_state):
 def get_myself(game_state):
     player_id = game_state['in_action']
     return game_state['players'][player_id]
+
+
+def is_well_positioned(game_state):
+    player_id = game_state['in_action']
+    dealer = game_state['dealer']
+    
+    is_last_seat = player_id == player_count(game_state) - 1
+    is_dealer_seat = player_id == dealer
+
+    return is_last_seat or is_dealer_seat

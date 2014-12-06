@@ -13,15 +13,19 @@ class TestPlayer(TestCase):
                 {
                     'hole_cards': [
                         {
-                            'rank': "A"
+                            'rank': "A",
+                            'suit': 'spades'
                         },
                         {
-                            'rank': "K"
+                            'rank': "K",
+                            'suit': 'spades'
                         }
                     ]
                 }
             ],
-            'community_cards': []
+            'community_cards': [],
+            'minimum_raise': 250,
+            'dealer': 1
         }
 
     def test_player_returns_int(self):
