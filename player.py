@@ -16,14 +16,17 @@ class Player:
         rank = ra.get_card_rank()
         offer = 0
 
+        minimal_amount = int(game_state["minimum_raise"])
 
         player_count = get_player_count(game_state)
         print "{0}:{1}".format(player_count, rank)
 
         if player_count > 2:
             offer = 0
+            if rank > 4:
+                offer = minimal_amount
         else:
-            minimal_amount = int(game_state["minimum_raise"])
+
             if is_preflop(game_state):
                 if ra._is_high() and is_well_positioned(game_state):
                     offer = minimal_amount
